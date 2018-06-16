@@ -22,6 +22,31 @@ namespace cake
             return word.ToString();
         }
 
+        public static bool BinarySearch(int[] sortedArray, int valueToFind)
+        {
+            // 1. Start with the middle number, is value to find less or greater. 
+            // 2. If less, recurse in smaller range. If more, recurse in greater range
+
+            // Base Case: If the last value is it, then true. Else false.  
+            if (sortedArray.Length == 1)
+            {
+                if (valueToFind == sortedArray[0])
+                    return true;
+                else
+                    return false;
+            }
+
+            int midPoint = sortedArray.Length / 2;
+            if (valueToFind >= sortedArray[midPoint])
+            {
+                return BinarySearch(sortedArray.Skip(midPoint).ToArray(), valueToFind);
+            }
+            else
+            {
+                return BinarySearch(sortedArray.Take(midPoint).ToArray(), valueToFind);
+            }
+        }
+
         public static int[] CountingSort(int[] theArray, int maxValue)
         {
             // 1. Get an array of all possible values and their counts. 
@@ -54,8 +79,19 @@ namespace cake
         internal static void Test()
         {
             int[] myArray = new int[5] { 1, 7, 1, 1, 8 };
+            int toFind = 7;
+            Console.WriteLine("Initial Array: " + String.Join(",", myArray));
+
+            // Counting Sort
             int[] sortedArray = CountingSort(myArray, 10);
-            Console.WriteLine(sortedArray);
+            Console.WriteLine("Sorted Array: " + String.Join(",", sortedArray));
+
+            // Binary Search
+            Console.WriteLine("Looking for " + toFind);
+            if (BinarySearch(sortedArray, toFind))
+                Console.WriteLine("Found " + toFind + "!");
+            else
+                Console.WriteLine("Did not find " + toFind + " in sorted Array");
         }
 
     }
