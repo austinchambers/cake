@@ -8,25 +8,11 @@ namespace cake
 {
     class ReverseString
     {
-        static Random r = new Random();
-
-        public static string RandomWord()
-        {
-            int randLength = r.Next(3, 10);
-            StringBuilder word = new StringBuilder();
-            for (int i = 0; i < randLength; i++)
-            {
-                char randChar = (char)(r.Next(0, 25) + 'a');
-                word.Append(randChar);
-            }
-            return word.ToString();
-        }
-
         public static void Test()
         {
             for (int i = 0; i < 10; i++)
             {
-                String randomWord = RandomWord();
+                String randomWord = Utils.RandomWord();
                 String reverseWord = ReverseWord(randomWord);
                 Console.WriteLine(" Random Word is: " + randomWord);
                 Console.WriteLine("Reverse Word is: " + reverseWord);
