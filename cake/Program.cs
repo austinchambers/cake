@@ -10,7 +10,7 @@ namespace cake
     {
         public static void Main(string[] args)
         {
-            FindRotationPoint.Test();
+            TicTacToe.Start();
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }

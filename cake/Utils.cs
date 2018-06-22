@@ -6,6 +6,20 @@ using System.Threading.Tasks;
 
 namespace cake
 {
+    internal static class Extensions
+    {
+        public static void Populate<T>(this T[,] arr, T value)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    arr[i, j] = value;
+                }
+            }
+        }
+    }
+
     internal class Utils
     {
         static Random r = new Random();
@@ -94,5 +108,6 @@ namespace cake
                 Console.WriteLine("Did not find " + toFind + " in sorted Array");
         }
 
+        
     }
 }
